@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="application/javascript" src="http://localhost:8080/jquery-1.9.0.js"></script>
+    <script>
+        //全局的ajax访问，处理ajax清求时sesion超时
+        $.ajaxSetup({
+            contentType : "application/x-www-form-urlencoded;charset=utf-8",
+            complete : function(XMLHttpRequest, textStatus) {
+                var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus"); // 通过XMLHttpRequest取得响应头，sessionstatus，
+                if (sessionstatus == "timeout") {
+                    // 如果超时就处理 ，指定要跳转的页面
+                    window.location.replace("../login.html");
+                }
+            }
+        });
+
+        setInterval(function(){
+            $.ajax({
+                url : 'http://localhost:8080/get',
+                type : 'post',
+                success : function(data){
+                    console.log(data);
+                }
+            });
+        },1000);
+    </script>
+    <title>你好</title>
+</head>
+<body>
+首页
+</body>
+</html>
