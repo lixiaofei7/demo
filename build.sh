@@ -2,7 +2,7 @@ mvn clean
 
 mvn package -DskipTests
 
-docker rmi -f lgj/demo-0.0.1-SNAPSHOT.jar
+docker rmi -f lgj/demo-0.0.1-SNAPSHOT
 
 mvn dockerfile:build
 
